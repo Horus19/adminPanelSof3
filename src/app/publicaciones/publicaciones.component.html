@@ -1,0 +1,17 @@
+<h1>Publicaciones</h1>
+<button (click)="crearPublicacion()">Crear Publicacion</button>
+<table>
+  <tr>
+    <th>Titulo</th>
+    <th>descripcion</th>
+    <th>Acciones</th>
+  </tr>
+  <tr *ngFor="let publicacion of publicaciones">
+    <td>{{publicacion.titulo}}</td>
+    <td>{{publicacion.descripcion}}</td>
+    <td>
+      <button (click)="editar(publicacion)">Editar</button>
+      <button (click)="eliminar(publicacion)">Eliminar</button>
+    </td>
+  </tr>
+</table>

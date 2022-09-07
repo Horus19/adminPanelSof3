@@ -1,0 +1,16 @@
+<form action="" [formGroup]="formPublicacion">
+  <input type="text" formControlName="titulo" placeholder="titulo">
+  <input type="text" formControlName="descripcion" placeholder="descripcion">
+  <input type="number" formControlName="precio" placeholder="precio">
+  <!-- <input type="text" formControlName="municipio" placeholder="municipio"> -->
+  <select formControlName="municipio">
+    <option *ngFor="let municipio of municipios"
+      value="{{municipio.id}}">{{municipio.nombre}}
+    </option>
+  </select>
+  <img [src] = "imageSource" alt="" width="300px">
+  <input type="file" formControlName="imagen" (change)="toBlod64($event)">
+  <button (click)="guardar()">Guardar</button>
+
+</form>
+
