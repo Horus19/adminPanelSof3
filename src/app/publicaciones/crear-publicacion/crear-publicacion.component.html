@@ -1,18 +1,25 @@
 <div class="publicacion">
   <form action="" [formGroup]="formPublicacion">
-    <input type="text" formControlName="titulo" placeholder="titulo">
+    <input type="text" formControlName="titulo" placeholder="titulo" />
     <!-- <input type="text" formControlName="descripcion" placeholder="descripcion"> -->
-    <textarea name="descripcion" id="descripcion" formControlName="descripcion" cols="30" rows="20" placeholder="descripcion"></textarea>
+    <textarea
+      name="descripcion"
+      id="descripcion"
+      formControlName="descripcion"
+      cols="30"
+      rows="20"
+      placeholder="descripcion"
+    ></textarea>
     <div class="row">
-      <input type="number" formControlName="precio" placeholder="precio">
+      <input type="number" formControlName="precio" placeholder="precio" />
       <select formControlName="municipio">
-        <option *ngFor="let municipio of municipios"
-          value="{{municipio.id}}">{{municipio.nombre}}
+        <option *ngFor="let municipio of municipios" value="{{ municipio.id }}">
+          {{ municipio.nombre }}
         </option>
       </select>
     </div>
-    <!-- <img [src] = "imageSource" alt="" width="300px"> -->
+    <img [src]="imageSource" alt="" width="300px" />
     <input type="file" formControlName="imagen" (change)="toBlod64($event)">
     <button (click)="guardar()">Guardar</button>
-    </form>
+  </form>
 </div>

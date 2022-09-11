@@ -1,1 +1,17 @@
-
+.load{
+    color: black;
+    background-color: #21dc21;
+}
+.left {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  .text{
+    margin-left: 15px;
+  }
+}
+.right {
+  display: flex;
+  justify-content: space-evenly;
+  width: 10%;
+}

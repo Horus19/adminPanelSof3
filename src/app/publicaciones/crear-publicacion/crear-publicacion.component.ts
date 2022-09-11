@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,12 +14,15 @@ import { PublicacionService } from '../services/publicacion.service';
 })
 export class CrearPublicacionComponent implements OnInit {
 
+  @Input("type")
+  type: "crear" | "edit" = "crear";
+  
   constructor(
-    private publicacionService: PublicacionService,
-    private municipioService: MunicipioService,
-    private route:ActivatedRoute,
-    private router: Router,
-    private fb: FormBuilder,
+    protected publicacionService: PublicacionService,
+    protected municipioService: MunicipioService,
+    protected route:ActivatedRoute,
+    protected router: Router,
+    protected fb: FormBuilder,
   ) { }
 
   municipios! : Municipio[];
@@ -69,7 +72,6 @@ export class CrearPublicacionComponent implements OnInit {
         this.router.navigate(['/publicaciones']);
       }
     );
-
 
   }
 

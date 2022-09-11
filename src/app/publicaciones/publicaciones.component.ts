@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Publicacion } from '../models/publicacion.model';
 import { PublicacionService } from './services/publicacion.service';
@@ -17,7 +18,8 @@ export class PublicacionesComponent implements OnInit {
   constructor(
     private publicacionService: PublicacionService,
     private router: Router,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -36,6 +38,7 @@ export class PublicacionesComponent implements OnInit {
   eliminar(publicacion: Publicacion){
     this.publicacionService.deletePublicacion(publicacion.id!).subscribe(
       data => {
+        this._snackBar.open(`Se Elimino el dato \"${publicacion.titulo}\" exitosamente.`, undefined, { duration:3000, verticalPosition:'top', horizontalPosition: 'right'});
         this.publicaciones = this.publicaciones.filter(p => p.id !== publicacion.id);
       }
     )

@@ -1,17 +1,23 @@
-<h1>Publicaciones</h1>
-<button (click)="crearPublicacion()">Crear Publicacion</button>
-<table>
-  <tr>
-    <th>Titulo</th>
-    <th>descripcion</th>
-    <th>Acciones</th>
-  </tr>
-  <tr *ngFor="let publicacion of publicaciones">
-    <td>{{publicacion.titulo}}</td>
-    <td>{{publicacion.descripcion}}</td>
-    <td>
-      <button (click)="editar(publicacion)">Editar</button>
-      <button (click)="eliminar(publicacion)">Eliminar</button>
-    </td>
-  </tr>
-</table>
+<h1 [align]="'center'">Publicaciones</h1>
+<button mat-raised-button class="load" (click)="crearPublicacion()">
+  Crear Publicacion
+  <mat-icon>publish</mat-icon>
+</button>
+<div *ngFor="let publicacion of publicaciones" class="card-container">
+  <div class="left">
+    <img [src]="publicacion.imagen" alt="" width="150px">
+    <div class="text">
+      <h3 class="titulo">{{ publicacion.titulo }}</h3>
+      <span class="descripcion">{{ publicacion.descripcion }}</span>
+    </div>
+  </div>
+
+  <div class="right">
+    <button mat-mini-fab color="accent" (click)="editar(publicacion)">
+      <mat-icon>edit_square</mat-icon>
+    </button>
+    <button mat-mini-fab color="warn" (click)="eliminar(publicacion)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>

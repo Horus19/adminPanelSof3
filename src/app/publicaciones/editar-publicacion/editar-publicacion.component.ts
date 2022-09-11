@@ -7,11 +7,14 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Municipio } from 'src/app/models/municipio.model';
 import { MunicipioService } from '../services/municipio.service';
 import { PublicacionDTO } from 'src/app/models/publicacionDTO.model';
+import { MessageService } from 'primeng/api';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-editar-publicacion',
-  templateUrl: './editar-publicacion.component.html',
-  styleUrls: ['./editar-publicacion.component.scss']
+  templateUrl: '../crear-publicacion/crear-publicacion.component.html',
+  styleUrls: ['../crear-publicacion/crear-publicacion.component.scss'],
+  providers: [MessageService]
 })
 export class EditarPublicacionComponent implements OnInit {
 
@@ -22,6 +25,8 @@ export class EditarPublicacionComponent implements OnInit {
     private fb: FormBuilder,
     private sanitizer: DomSanitizer,
     private router: Router,
+    private messageService: MessageService,
+    private _snackBar: MatSnackBar
   ) { }
 
   idPublicacion!: number;
@@ -44,8 +49,12 @@ export class EditarPublicacionComponent implements OnInit {
 
   ngOnInit(): void {
     this.idPublicacion = this.route.snapshot.params['id'];
+    console.log(this.route)
+    this.route.params.subscribe((param)=>{
+      this.idPublicacion = param['id'];
     this.publicacionService.getPulicacion(this.idPublicacion).subscribe(
       data => {
+        console.log(data)
         this.publicacion = data;
         this.formPublicacion.controls['titulo'].setValue(this.publicacion.titulo);
         this.formPublicacion.controls['descripcion'].setValue(this.publicacion.descripcion);
@@ -54,11 +63,13 @@ export class EditarPublicacionComponent implements OnInit {
         this.imageSource = this.sanitizer.bypassSecurityTrustResourceUrl(this.publicacion.imagen);
       }
     )
-    this.municipioService.getMunicipios().subscribe(
-      data => {
-        this.municipios = data;
-      }
-    )
+  })
+    
+  this.municipioService.getMunicipios().subscribe(
+    data => {
+      this.municipios = data;
+    }
+  )
 
   }
 
@@ -82,6 +93,8 @@ export class EditarPublicacionComponent implements OnInit {
 
     this.publicacionService.updatePublicacion(publicacionDTO).subscribe(
       data => {
+        //this.messageService.add({severity:'success', summary:'Edicion', detail:'Se edito el dato exitosamente.'});
+        this._snackBar.open("Se edito el dato exitosamente.", undefined, { duration:3000, verticalPosition:'top', horizontalPosition: 'right'});
         this.router.navigate(['/publicaciones']);
       }
     )
@@ -93,6 +106,7 @@ export class EditarPublicacionComponent implements OnInit {
     reader.readAsDataURL(file);
     reader.onload = () => {
       this.imagenBinaria = reader.result;
+      this.imageSource = reader.result;
     };
   }
 

@@ -20,13 +20,15 @@ $adminPanel-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$adminPanel-theme: mat.define-light-theme((
-  color: (
-    primary: $adminPanel-primary,
-    accent: $adminPanel-accent,
-    warn: $adminPanel-warn,
+$adminPanel-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $adminPanel-primary,
+      accent: $adminPanel-accent,
+      warn: $adminPanel-warn,
+    ),
   )
-));
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -35,5 +37,24 @@ $adminPanel-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.card-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 16px;
+  border: 2px solid darkgray;
+  border-radius: 5px;
+  width: 100%;
+  padding: 15px;
+}
+

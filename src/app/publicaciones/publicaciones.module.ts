@@ -6,7 +6,11 @@ import { PublicacionesComponent } from './publicaciones.component';
 import { CrearPublicacionComponent } from './crear-publicacion/crear-publicacion.component';
 import { EditarPublicacionComponent } from './editar-publicacion/editar-publicacion.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
+import { MaterialModule } from '../material/material.module';
+import { FileUploadModule } from "primeng/fileupload";
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MessagesModule } from 'primeng/messages';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     CommonModule,
     PublicacionesRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule, 
+    MaterialModule,
+    FileUploadModule,
+    MessagesModule
   ]
 })
 export class PublicacionesModule { }
