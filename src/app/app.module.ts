@@ -18,7 +18,6 @@ import { MessagesModule } from 'primeng/messages';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    NoopAnimationsModule,
     HttpClientModule,
     MaterialModule,
     FileUploadModule,
